@@ -1,0 +1,28 @@
+---
+- name: Coping example files
+  copy:
+    src: examples
+    dest: /root/
+    mode: 0775
+     
+- name: Creating exam user
+  user:
+    name: sysmachine
+    comment: "Account for machine id"
+    shell: /sbin/nologin
+    home: /home/sysmachine
+    group: users
+    uid: 800
+    state: present
+
+- name: Coping script.sh
+  copy: 
+    src: script.sh
+    dest: /home/sysmachine/
+    mode: 0777
+
+- name: Coping rc files
+  copy:
+    src: rc
+    dest: /
+    mode: 0777       
